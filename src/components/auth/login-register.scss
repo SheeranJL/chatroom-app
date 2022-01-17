@@ -1,0 +1,64 @@
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 400px;
+  height: 500px;
+  justify-content: center;
+  background-color: rgb(210, 211, 212);
+
+  .input-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+
+      input {
+        margin-top: 5px;
+        background-color: transparent;
+        height: 25px;
+        width: 50%;
+        font-size: 20px;
+        border: 1px solid black;
+        border-radius: 3px;
+      }
+  }
+
+  .login-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    .form-button {
+      button {
+        width: 100px;
+        height: 25px;
+        cursor: pointer;
+        margin: 3px;
+      }
+    }
+  }
+
+  .form-button-register {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+      button {
+        width: 100px;
+        height: 25px;
+        cursor: pointer;
+        margin: 3px;
+      }
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    cursor: pointer;
+    text-align: center
+  }
+
+}

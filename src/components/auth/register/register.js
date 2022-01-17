@@ -1,58 +1,62 @@
 import '../login-register.scss';
 import React, {useState, useContext} from 'react';
 
-//importing components//
-import InputField from '../../reuseable/input-field/input-field.js';
-
 
 const Register = ({toggleLoginMethod}) => {
 
+  const [registrationValues, setRegistrationValues] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+
+  const {displayName, email, password, confirmPassword} = registrationValues;
+
   const handleChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    const {name, value} = e.target;
+    setRegistrationValues(prevState => {
+      return {
+        ...prevState,
+        [name] : value,
+      };
+    });
+  };
+
+  const handleSubmit = () => {
+    console.log(registrationValues);
   }
 
   return (
-    <div>
+    <div className='auth-form-container'>
+
+      <h2> Register </h2>
+
       <form>
+        <div className='input-section'>
+          <label htmlFor='displayName'>Display name</label>
+          <input name='displayName' type='displayName' onChange={handleChange} value={displayName}/>
+        </div>
 
-      <div className='input-section'>
-        <InputField
-            forType='displayName'
-            type='text'
-            onChange={handleChange}>
-          Display name
-        </InputField>
-      </div>
+        <div className='input-section'>
+          <label htmlFor='email'>Email</label>
+          <input name='email' type='email' onChange={handleChange} value={email}/>
+        </div>
 
-      <div className='input-section'>
-        <InputField
-            forType='email'
-            type='email'
-            onChange={handleChange}>
-          Email
-        </InputField>
-      </div>
+        <div className='input-section'>
+          <label htmlFor='password'>Password</label>
+          <input name='password' type='password' onChange={handleChange} value={password}/>
+        </div>
 
-      <div className='input-section'>
-        <InputField
-            forType='password'
-            type='password'
-            onChange={handleChange}>
-          Password
-        </InputField>
-      </div>
-
-      <div className='input-section'>
-        <InputField
-            forType='password'
-            type='password'
-            onChange={handleChange}>
-          Confirm password
-        </InputField>
-      </div>
-
+        <div className='input-section'>
+          <label htmlFor='confirmPassword'>Confirm Password</label>
+          <input name='confirmPassword' type='password' onChange={handleChange} value={confirmPassword}/>
+        </div>
       </form>
+
+      <div className='form-button-register'>
+      <button onClick={handleSubmit}>Register</button>
+      </div>
 
       <h4 onClick={() => toggleLoginMethod(true)}>
         Already have an account? Sign in!

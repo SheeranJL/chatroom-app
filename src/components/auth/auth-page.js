@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './auth-page.scss';
 
 //importing components//
 import Login from './login/login.js';
