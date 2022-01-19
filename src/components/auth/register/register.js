@@ -1,9 +1,16 @@
 import '../login-register.scss';
 import React, {useState, useContext} from 'react';
+import {auth, createUserProfileDocument} from '../../../firebase/firebase.js';
+import {appContext} from '../../../context/context.js';
+import {useNavigate} from 'react-router-dom';
 
 
 const Register = ({toggleLoginMethod}) => {
 
+  const {actions, data} = useContext(appContext) //Importing context
+  const nativate = useNavigate();
+
+  //Form registration values (local state)//
   const [registrationValues, setRegistrationValues] = useState({
     displayName: '',
     email: '',
@@ -11,8 +18,10 @@ const Register = ({toggleLoginMethod}) => {
     confirmPassword: '',
   })
 
-  const {displayName, email, password, confirmPassword} = registrationValues;
+  const {displayName, email, password, confirmPassword} = registrationValues; //Destructure variables off our local state
 
+
+  //On form input change, determine which state value to store the input//
   const handleChange = (e) => {
     const {name, value} = e.target;
     setRegistrationValues(prevState => {
@@ -23,8 +32,18 @@ const Register = ({toggleLoginMethod}) => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log(registrationValues);
+
+  const handleSubmit = async() => {
+    const {user} = await auth.createUserWithEmailAndPassword(email, password)
+
+    const newUserInfo = {
+      user,
+      displayName: displayName,
+    }
+
+    const account = await createUserProfileDocument(user, newUserInfo);
+    actions.setCurrentUser(account.data());
+
   }
 
   return (

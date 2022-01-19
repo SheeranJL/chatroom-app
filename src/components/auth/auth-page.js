@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {appContext} from '../../context/context.js';
 import './auth-page.scss';
 
 //importing components//
@@ -9,6 +11,16 @@ import Register from './register/register.js';
 const AuthPage = () => {
 
   const [toggleMethod, setToggleMethod] = useState(true);
+  const {data, actions} = useContext(appContext);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (data.currentUser) {
+      navigate('/home')
+    }
+  }, [data.currentUser])
+
 
   return (
 

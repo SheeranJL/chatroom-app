@@ -16,21 +16,24 @@ const Login = ({toggleLoginMethod}) => {
     password: '',
   })
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log('test')
-    if (data.currentUser) {
-      navigate('/home')
-    }
-  }, [data.currentUser])
+  const [loginErrors, setLoginErrors] = useState('');
 
 
-  const {email, password} = loginValues;
+  const {email, password} = loginValues; //Destructure state
+  const navigate = useNavigate();        //Bring in navigation into app to redirect users to home screen upon login within useEffect.
 
+  // 
+  // useEffect(() => {
+  //   console.log('test')
+  //   if (data.currentUser) {
+  //     navigate('/home')
+  //   }
+  // }, [data.currentUser])
+
+
+  //Handle changed form values and store them in local state
   const handleChange = (e) => {
     const {name, value} = e.target;
-
     setLoginValues(prevState => {
       return {
         ...prevState,
@@ -39,10 +42,23 @@ const Login = ({toggleLoginMethod}) => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log(loginValues);
-  }
 
+  //Handle submission of login form
+  const handleSubmit = () => {
+    auth.signInWithEmailAndPassword(email, password) //Google will search for a email/pass combo.
+      .then((auth) => {                              //If successful, we will have an object returned to us containing the user details.
+        console.log('login successful')
+        console.log(auth)
+        const {user} = auth;
+        actions.setCurrentUser({     //Set current user to our context state.
+          user
+        })
+      })
+      .catch(error => {              //If unsuccessful, we will be given an error stating that the email/pass combo doesn't exist, or otherwise.
+        console.log(error)
+        setLoginErrors(error.code)
+      })
+  }
 
 
 
@@ -70,7 +86,7 @@ const Login = ({toggleLoginMethod}) => {
       <div className='login-buttons'>
 
         <div className='form-button'>
-          <button>Log in</button>
+          <button onClick={handleSubmit}>Log in</button>
         </div>
 
         <div className='form-button'>

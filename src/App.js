@@ -2,7 +2,7 @@ import './App.scss';
 import {BrowserRouter as Router, Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import React, {useContext, useEffect} from 'react';
 import {appContext} from './context/context.js';
-import {auth} from './firebase/firebase.js';
+import {auth, createUserProfileDocument, checkAuthenticatedUser} from './firebase/firebase.js';
 
 //Importing components//
 import AuthPage from './components/auth/auth-page.js';
@@ -14,20 +14,39 @@ const PrivateRoute = ({isAuthenticated, children}) => {
   return (isAuthenticated) ? children : <Navigate to='/login' /> //Check that user is authenticated, if so, render the child otherwise, nativate back to login screen//
 }
 
-
+let unsubscribeFromAuth = null;
 
 const App = () => {
 
   const {data, actions} = useContext(appContext);
 
-
-  let unsubscribeFromAuth = null;
+  // useEffect(() => {
+  //
+  //   unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+  //
+  //     console.log(userAuth)
+  //
+  //     if (userAuth) {
+  //       const userRef = await createUserProfileDocument(userAuth);
+  //       actions.setCurrentUser({
+  //         userData: {...userRef},
+  //       })
+  //     }
+  //   })
+  // }, [])
 
   useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      actions.setCurrentUser(userAuth);
+
+    auth.onAuthStateChanged(async (userAuth) => {
+
+      if (userAuth) {
+        const isUserLoggedIn = await checkAuthenticatedUser(userAuth)
+        await actions.setCurrentUser(isUserLoggedIn.data())
+      }
+
     })
-  }, [])
+
+  }, [data.currentUser])
 
 
   return (
