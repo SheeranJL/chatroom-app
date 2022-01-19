@@ -21,18 +21,22 @@ const App = () => {
   const {data, actions} = useContext(appContext);
 
   useEffect(() => {
-
     auth.onAuthStateChanged(async (userAuth) => {
-
       if (userAuth) {
-        const isUserLoggedIn = await checkAuthenticatedUser(userAuth)
-        await actions.setCurrentUser(isUserLoggedIn.data())
+        // const isUserLoggedIn = await checkAuthenticatedUser(userAuth)
+        await actions.setCurrentUser({
+          user: {
+            displayName: userAuth.displayName,
+            email: userAuth.email,
+            photoURL: userAuth.photoURL,
+            uid: userAuth.uid,
+          }
+        })
       }
-
     })
-
   }, [])
 
+   auth.signOut();
 
   return (
     <Router>

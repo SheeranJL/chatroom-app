@@ -3,6 +3,8 @@ import './chat-input.scss';
 
 const ChatInput = ({handleChange, message, handleSubmit}) => {
 
+
+
   return (
     <div className='input-and-submit-container'>
       <input

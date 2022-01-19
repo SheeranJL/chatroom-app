@@ -18,10 +18,11 @@ const AuthPage = () => {
   useEffect(() => {
     if (data.currentUser) {
       navigate('/home')
+      console.log('test7')
     }
   }, [data.currentUser])
 
-
+  console.log('test6')
   return (
 
     <div className='auth-screen-container'>

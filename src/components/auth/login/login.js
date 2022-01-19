@@ -22,13 +22,13 @@ const Login = ({toggleLoginMethod}) => {
   const {email, password} = loginValues; //Destructure state
   const navigate = useNavigate();        //Bring in navigation into app to redirect users to home screen upon login within useEffect.
 
-  // 
-  // useEffect(() => {
-  //   console.log('test')
-  //   if (data.currentUser) {
-  //     navigate('/home')
-  //   }
-  // }, [data.currentUser])
+
+  useEffect(() => {
+    console.log('test')
+    if (data.currentUser) {
+      navigate('/home')
+    }
+  }, [data.currentUser])
 
 
   //Handle changed form values and store them in local state
@@ -49,9 +49,17 @@ const Login = ({toggleLoginMethod}) => {
       .then((auth) => {                              //If successful, we will have an object returned to us containing the user details.
         console.log('login successful')
         console.log(auth)
-        const {user} = auth;
+
+        const {user:{displayName, email, photoURL, uid}} = auth;
+
+        console.log('checking user object:', displayName, email, photoURL, uid)
         actions.setCurrentUser({     //Set current user to our context state.
-          user
+          user: {
+            displayName,
+            email,
+            photoURL,
+            uid
+          }
         })
       })
       .catch(error => {              //If unsuccessful, we will be given an error stating that the email/pass combo doesn't exist, or otherwise.
@@ -59,7 +67,6 @@ const Login = ({toggleLoginMethod}) => {
         setLoginErrors(error.code)
       })
   }
-
 
 
   return (

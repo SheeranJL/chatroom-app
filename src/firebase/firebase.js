@@ -1,7 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-import { getDatabase, ref, set } from "firebase/database";
+
+import {useCollectionData} from 'react-firebase-hooks/firestore';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -27,18 +28,19 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 
   if (!snapshot.exists) {                                   //If a snapshot DOESNT exist against that user ID, implying the user is NOT available therefore the user doesn't exist, then we will continue with this conditional
 
-    const {email, photoURL, ...rest} = userAuth;            //Destructure the email, photoURL, and rest of the object props from userAuth.
+    const {email, uid, photoURL, ...rest} = userAuth;            //Destructure the email, photoURL, and rest of the object props from userAuth.
     const {displayName} = additionalData;                   //Destructure the displayName off additionalData.
     const createdAt = new Date();                           //Create a timestamp for this new user so we can refer back to this later if we want to see how long the account is.
-
+    console.log('test3')
 
     //Try creating (SET) a user profile for this new registered user, otherwise throw us an error detailing the reason why it failed//
     try {
       await userRef.set({
-        user: {displayName, email, photoURL, createdAt} //The user will have all of the properties we destructured earlier.
+        user: {displayName, email, photoURL, createdAt, uid} //The user will have all of the properties we destructured earlier.
       })
       const newUser = await firestore.doc(`users/${userAuth.uid}`)
       account = newUser.get()
+      console.log('test2')
     } catch(error) {
       console.log('Error writing new user to firebase', error)
       account = null;
@@ -54,11 +56,12 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 export const checkAuthenticatedUser = async(userAuth) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = firestore.doc(`users/${userAuth.uid}`);    //search firebase to find the user with the unique ID (uid)
   const userData = userRef.get();
-
+  console.log('test4')
   return userData;
 }
+
 
 
 

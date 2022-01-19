@@ -34,7 +34,7 @@ const Register = ({toggleLoginMethod}) => {
 
 
   const handleSubmit = async() => {
-    const {user} = await auth.createUserWithEmailAndPassword(email, password)
+    const {user} = await auth.createUserWithEmailAndPassword(email, password)      //Create a new account on google auth
 
     const newUserInfo = {
       user,
@@ -42,6 +42,7 @@ const Register = ({toggleLoginMethod}) => {
     }
 
     const account = await createUserProfileDocument(user, newUserInfo);
+    console.log('console log the new account obj:', account.data());
     actions.setCurrentUser(account.data());
 
   }
