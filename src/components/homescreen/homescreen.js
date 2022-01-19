@@ -2,6 +2,10 @@ import React from 'react';
 import {auth} from '../../firebase/firebase.js';
 import './homescreen.scss';
 
+import LeftSide from './left-side/left-side.js';
+import MiddleChat from './middle-chat/middle-chat.js'
+import RightSideInfo from './right-side-info/right-side-info.js'
+
 const HomeScreen = () => {
 
   const handleLogout = () => {
@@ -9,9 +13,10 @@ const HomeScreen = () => {
   }
 
   return (
-      <div>
-        <span>this is a test</span>
-        <button onClick={handleLogout}>Logout</button>
+      <div className='main-page-container'>
+        <LeftSide />
+        <MiddleChat />
+        <RightSideInfo />
       </div>
   )
 }

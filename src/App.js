@@ -20,21 +20,6 @@ const App = () => {
 
   const {data, actions} = useContext(appContext);
 
-  // useEffect(() => {
-  //
-  //   unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-  //
-  //     console.log(userAuth)
-  //
-  //     if (userAuth) {
-  //       const userRef = await createUserProfileDocument(userAuth);
-  //       actions.setCurrentUser({
-  //         userData: {...userRef},
-  //       })
-  //     }
-  //   })
-  // }, [])
-
   useEffect(() => {
 
     auth.onAuthStateChanged(async (userAuth) => {
