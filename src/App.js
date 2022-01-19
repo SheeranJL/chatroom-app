@@ -36,7 +36,6 @@ const App = () => {
     })
   }, [])
 
-   auth.signOut();
 
   return (
     <Router>
