@@ -6,13 +6,13 @@ import { getDatabase, ref, set } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAzbRsz9kbtHgGUr3IksIvNYsBn381ZN4k",
-  authDomain: "chatroom-app-c119a.firebaseapp.com",
-  projectId: "chatroom-app-c119a",
-  storageBucket: "chatroom-app-c119a.appspot.com",
-  messagingSenderId: "1075112232381",
-  appId: "1:1075112232381:web:ef434f451b6ec43c7c7ed4",
-  measurementId: "G-5QCEELMNLN"
+  apiKey: "AIzaSyDegQtNYh66Rn5fWUX-uI9rFYkFwcHC5QU",
+  authDomain: "chatroom-two.firebaseapp.com",
+  projectId: "chatroom-two",
+  storageBucket: "chatroom-two.appspot.com",
+  messagingSenderId: "34267078502",
+  appId: "1:34267078502:web:b80567e43ac1a54ea832a7",
+  measurementId: "G-GH3MHSLVP5"
 };
 
 //Create a user within firebase firestore based on the information provided in the rego form, and the returned value from auth.createUserWithEmailAndPassword//

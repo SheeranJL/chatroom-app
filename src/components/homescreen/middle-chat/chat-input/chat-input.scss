@@ -1,0 +1,24 @@
+.input-and-submit-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .chat-field {
+    width: 95%;
+    height: 35px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .submit-chat {
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 50px;
+    cursor: pointer;
+  }
+
+
+}

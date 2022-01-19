@@ -4,4 +4,11 @@
   width: 60%;
   align-items: center;
   border: 1px solid red;
+
+  .chat-message-container {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    width: 100%;
+  }
 }
