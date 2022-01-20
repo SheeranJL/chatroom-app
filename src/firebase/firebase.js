@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import {onSnapshot} from 'firebase/firestore';
 
 
 import {useCollectionData} from 'react-firebase-hooks/firestore';
@@ -29,7 +30,7 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 
   if (!snapshot.exists) {                                   //If a snapshot DOESNT exist against that user ID, implying the user is NOT available therefore the user doesn't exist, then we will continue with this conditional
 
-    const {email, uid, photoURL, ...rest} = userAuth;            //Destructure the email, photoURL, and rest of the object props from userAuth.
+    const {email, uid, photoURL, ...rest} = userAuth;       //Destructure the email, photoURL, and rest of the object props from userAuth.
     const {displayName} = additionalData;                   //Destructure the displayName off additionalData.
     const createdAt = new Date();                           //Create a timestamp for this new user so we can refer back to this later if we want to see how long the account is.
     console.log('test3')
@@ -64,6 +65,41 @@ export const checkAuthenticatedUser = async(userAuth) => {
 }
 
 
+//This function will place the user within the firestore 'online' document.
+export const setOnlineUser = async(userAuth) => {
+
+  const documentRef = await firestore.doc(`online/${userAuth.uid}`);
+  const snapshot = await documentRef.get();
+
+  try {
+    await documentRef.set({
+      displayName: userAuth.displayName,
+      email: userAuth.email,
+      photoURL: userAuth.photoURL,
+      uid: userAuth.uid,
+    })
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+
+
+export const setOfflineUser = async(userAuth) => {
+
+  const documentRef = await firestore.collection(`online`);
+  // const snapshot = await documentRef.get();
+
+  const snapshot = await firebase.firestore().collection('online').get();        //Getting a snapshot of data from firestore for the 'online' collection
+  const onlineUsers = snapshot.docs.map(doc => doc.data())                       //Getting the data from snapshot which is an array of our user documents
+  const filterOnlineUsers = onlineUsers.filter(user => user.uid !== userAuth)    //Filtering through the online list of users to exclude the current user who's signed out.
+
+  try {
+    await documentRef.set({filterOnlineUsers})
+  } catch(error) {
+    console.log('error updating online list', error)
+  }
+}
 
 
 // Initialize Firebase

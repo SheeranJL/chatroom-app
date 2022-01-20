@@ -5,9 +5,7 @@ import './each-message.scss';
 const EachMessage = ({message}) => {
 
   const {data:{currentUser}} = useContext(appContext);
-  console.log(message);
-  console.log(currentUser.user.uid)
-
+  
   return (
     <div className='chat-message-container'>
 

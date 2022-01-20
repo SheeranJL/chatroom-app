@@ -12,7 +12,6 @@ const ChatContainer = () => {
   const messagesRef = firestore.collection('messages');           //getting reference to 'messages' collection
   const query = messagesRef.orderBy('createdAt').limit(100);       //
   const [messages] = useCollectionData(query, {idField: 'id'});
-  console.log(messages)
 
 
   return (

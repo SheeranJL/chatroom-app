@@ -2,7 +2,7 @@ import './App.scss';
 import {BrowserRouter as Router, Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import React, {useContext, useEffect} from 'react';
 import {appContext} from './context/context.js';
-import {auth, createUserProfileDocument, checkAuthenticatedUser} from './firebase/firebase.js';
+import {auth, createUserProfileDocument, checkAuthenticatedUser, setOnlineUser, setOfflineUser} from './firebase/firebase.js';
 
 //Importing components//
 import AuthPage from './components/auth/auth-page.js';
@@ -32,10 +32,13 @@ const App = () => {
             uid: userAuth.uid,
           }
         })
+        await setOnlineUser(userAuth)
       }
     })
   }, [])
 
+
+  setOfflineUser();
 
   return (
     <Router>
