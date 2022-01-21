@@ -44,6 +44,11 @@ const MiddleChat = () => {
     <div className='middle-chat-container'>
 
       <div className='chat-container'>
+
+        <div className='chat-banner'>
+          Test
+        </div>
+
         <ChatContainer />
       </div>
 

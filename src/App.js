@@ -41,13 +41,15 @@ const App = () => {
   setOfflineUser();
 
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/login' element={<AuthPage />} />
-        <Route path='/home' element={<PrivateRoute isAuthenticated={data.currentUser}> <HomeScreen /> </PrivateRoute>} />
-        <Route path='*' element={<AuthPage />} />
-      </Routes>
-    </Router>
+    <div className='app-container'>
+      <Router>
+        <Routes>
+          <Route exact path='/login' element={<AuthPage />} />
+          <Route path='/home' element={<PrivateRoute isAuthenticated={data.currentUser}> <HomeScreen /> </PrivateRoute>} />
+          <Route path='*' element={<AuthPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

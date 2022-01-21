@@ -9,6 +9,13 @@
     height: 95%;
     width: 100%;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    .chat-banner {
+      height: 15%;
+      background-color: rgba(67, 67, 153, 1);
+    }
   }
 
   .chat-message-container {

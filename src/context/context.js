@@ -5,9 +5,6 @@ export const Provider = ({children}) => {
 
   const [currentUser, setCurrentUser] = useState(null);
 
-
-
-
   return (
     <appContext.Provider value={{
       data: {

@@ -16,7 +16,6 @@ const HomeScreen = () => {
       <div className='main-page-container'>
         <LeftSide />
         <MiddleChat />
-        <RightSideInfo />
       </div>
   )
 }

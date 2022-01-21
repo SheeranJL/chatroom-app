@@ -87,18 +87,12 @@ export const setOnlineUser = async(userAuth) => {
 
 export const setOfflineUser = async(userAuth) => {
 
-  const documentRef = await firestore.collection(`online`);
-  // const snapshot = await documentRef.get();
+  const documentRef = await firestore.collection(`online`)
+    .doc(userAuth)
+    .delete()
+    .then(() => console.log('item deleted'))
+    .catch(error => console.log('error deleting user from Online collection', error))
 
-  const snapshot = await firebase.firestore().collection('online').get();        //Getting a snapshot of data from firestore for the 'online' collection
-  const onlineUsers = snapshot.docs.map(doc => doc.data())                       //Getting the data from snapshot which is an array of our user documents
-  const filterOnlineUsers = onlineUsers.filter(user => user.uid !== userAuth)    //Filtering through the online list of users to exclude the current user who's signed out.
-
-  try {
-    await documentRef.set({filterOnlineUsers})
-  } catch(error) {
-    console.log('error updating online list', error)
-  }
 }
 
 
