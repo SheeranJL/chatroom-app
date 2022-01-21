@@ -1,0 +1,15 @@
+.online-user-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  span {
+    margin-left: 10px;
+  }
+
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+  }
+}

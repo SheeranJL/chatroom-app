@@ -33,7 +33,6 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
     const {email, uid, photoURL, ...rest} = userAuth;       //Destructure the email, photoURL, and rest of the object props from userAuth.
     const {displayName} = additionalData;                   //Destructure the displayName off additionalData.
     const createdAt = new Date();                           //Create a timestamp for this new user so we can refer back to this later if we want to see how long the account is.
-    console.log('test3')
 
     //Try creating (SET) a user profile for this new registered user, otherwise throw us an error detailing the reason why it failed//
     try {
@@ -42,7 +41,6 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
       })
       const newUser = await firestore.doc(`users/${userAuth.uid}`)
       account = newUser.get()
-      console.log('test2')
     } catch(error) {
       console.log('Error writing new user to firebase', error)
       account = null;
@@ -64,35 +62,62 @@ export const checkAuthenticatedUser = async(userAuth) => {
   return userData;
 }
 
+export const onAuthStateChangeFindUser = async(userAuth) => {
+
+  let userToReturn;
+
+  const userRefSnapshot = await firestore.doc(`users/${userAuth.uid}`)
+    .get().then(doc => userToReturn = doc.data());
+
+  return userToReturn;
+
+}
 
 //This function will place the user within the firestore 'online' document.
 export const setOnlineUser = async(userAuth) => {
 
-  const documentRef = await firestore.doc(`online/${userAuth.uid}`);
+  const documentRef = await firestore.doc(`online/${userAuth.user.uid}`);
   const snapshot = await documentRef.get();
 
+  console.log('checking firebase', userAuth)
   try {
     await documentRef.set({
-      displayName: userAuth.displayName,
-      email: userAuth.email,
-      photoURL: userAuth.photoURL,
-      uid: userAuth.uid,
+      displayName: userAuth.user.displayName,
+      email: userAuth.user.email,
+      photoURL: userAuth.user.photoURL,
+      uid: userAuth.user.uid,
     })
   } catch(error) {
     console.log(error)
   }
 }
 
+// export const setOnlineUser = async(userAuth) => {
+//
+//   console.log(userAuth)
+//   const documentRef = await firestore.doc(`online/${userAuth.uid}`);
+//   const snapshot = await documentRef.get();
+//
+//   console.log('checking firebase', userAuth)
+//   try {
+//     await documentRef.set({
+//       displayName: userAuth.user.displayName,
+//       email: userAuth.user.email,
+//       photoURL: userAuth.user.photoURL,
+//       uid: userAuth.user.uid,
+//     })
+//   } catch(error) {
+//     console.log(error)
+//   }
+// }
+
 
 
 export const setOfflineUser = async(userAuth) => {
-
   const documentRef = await firestore.collection(`online`)
     .doc(userAuth)
     .delete()
-    .then(() => console.log('item deleted'))
     .catch(error => console.log('error deleting user from Online collection', error))
-
 }
 
 

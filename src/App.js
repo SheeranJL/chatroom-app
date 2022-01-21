@@ -2,7 +2,7 @@ import './App.scss';
 import {BrowserRouter as Router, Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import React, {useContext, useEffect} from 'react';
 import {appContext} from './context/context.js';
-import {auth, createUserProfileDocument, checkAuthenticatedUser, setOnlineUser, setOfflineUser} from './firebase/firebase.js';
+import {auth, createUserProfileDocument, checkAuthenticatedUser, setOnlineUser, setOfflineUser, onAuthStateChangeFindUser} from './firebase/firebase.js';
 
 //Importing components//
 import AuthPage from './components/auth/auth-page.js';
@@ -22,8 +22,22 @@ const App = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        // const isUserLoggedIn = await checkAuthenticatedUser(userAuth)
+      if (!userAuth.displayName) {
+        const userToSave = await onAuthStateChangeFindUser(userAuth)
+        if (userToSave) {
+          // const isUserLoggedIn = await checkAuthenticatedUser(userAuth)
+          // console.log('before...', userAuth.displayName)
+          await actions.setCurrentUser({
+            user: {
+              displayName: userToSave.user.displayName,
+              email: userToSave.user.email,
+              photoURL: userToSave.user.photoURL,
+              uid: userToSave.user.uid,
+            }
+          })
+          console.log('after...', userAuth.displayName)
+        }
+      } else {
         await actions.setCurrentUser({
           user: {
             displayName: userAuth.displayName,
@@ -32,7 +46,8 @@ const App = () => {
             uid: userAuth.uid,
           }
         })
-        await setOnlineUser(userAuth)
+        console.log('checking currebt yser: ', data.currentUser)
+        await setOnlineUser(data.currentUser)
       }
     })
   }, [])
