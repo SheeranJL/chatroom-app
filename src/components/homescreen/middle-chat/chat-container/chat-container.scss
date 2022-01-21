@@ -1,7 +1,10 @@
 .chat-container-inner {
   overflow-y: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  max-height: 100%;
+  height: 100%;
   background-color: rgba(9, 9, 61, 1);
+  flex-direction: column;
+  display: flex;
 
 }

@@ -1,8 +1,8 @@
 .chat-message-container {
   display: flex;
   width: 100%;
-  margin-top: 10px;
   align-items: center;
+  margin-bottom: 15px;
 
   .chat-me {
     display: flex;
@@ -14,10 +14,7 @@
     border-radius: 10px;
     width: auto;
     padding: 10px;
-
-    .chat-photo {
-
-    }
+    margin-bottom: 10px;
   }
 
   .chat-them {
@@ -30,6 +27,7 @@
     border-radius: 10px;
     width: auto;
     padding: 5px 10px 2px 5px;
+    margin-bottom: 10px;
 
     .chat-photo {
       display: flex;
@@ -48,11 +46,22 @@
       align-items: center;
       flex-direction: column;
       justify-content: center;
+      width: auto;
       border-radius: 10px;
       align-self: center;
       align-content: center;
 
-      span {
+      .sender-name {
+        display: flex;
+        width: 100%;
+        align-items: flex-end;
+        font-size: 12px;
+        text-align: left;
+        margin-left: 5px;
+        margin-top: 5px;
+      }
+
+      .message-text {
         width: auto;
         margin-left: 10px;
         margin-right: 10px;

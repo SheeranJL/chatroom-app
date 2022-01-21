@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   width: 500px;
-  border: 1px solid black;
   align-items: center;
 
+  .left-side-banner {
+    height: 10%;
+  }
   .chat-history {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     width: 100%;
     height: 30%;
     align-items: center;
@@ -25,7 +26,6 @@
     .online-status, .friends-list {
       display: flex;
       flex-direction: column;
-      border: 1px solid green;
       width: 50%;
 
       h1 {

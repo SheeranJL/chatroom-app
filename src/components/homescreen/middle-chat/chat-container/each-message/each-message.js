@@ -16,7 +16,10 @@ const EachMessage = ({message}) => {
         </div>
 
         <div className='chat-message'>
-          <span>{message.text}</span>
+          <div className='sender-name'>
+            <span>{message.userName}</span>
+          </div>
+          <span className='message-text'>{message.text}</span>
         </div>
 
       </div>

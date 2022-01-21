@@ -55,12 +55,13 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 
 export const checkAuthenticatedUser = async(userAuth) => {
   if (!userAuth) return;
-
   const userRef = firestore.doc(`users/${userAuth.uid}`);    //search firebase to find the user with the unique ID (uid)
   const userData = userRef.get();
   console.log('test4')
   return userData;
 }
+
+
 
 export const onAuthStateChangeFindUser = async(userAuth) => {
 
@@ -72,6 +73,8 @@ export const onAuthStateChangeFindUser = async(userAuth) => {
   return userToReturn;
 
 }
+
+
 
 //This function will place the user within the firestore 'online' document.
 export const setOnlineUser = async(userAuth) => {
@@ -92,24 +95,6 @@ export const setOnlineUser = async(userAuth) => {
   }
 }
 
-// export const setOnlineUser = async(userAuth) => {
-//
-//   console.log(userAuth)
-//   const documentRef = await firestore.doc(`online/${userAuth.uid}`);
-//   const snapshot = await documentRef.get();
-//
-//   console.log('checking firebase', userAuth)
-//   try {
-//     await documentRef.set({
-//       displayName: userAuth.user.displayName,
-//       email: userAuth.user.email,
-//       photoURL: userAuth.user.photoURL,
-//       uid: userAuth.user.uid,
-//     })
-//   } catch(error) {
-//     console.log(error)
-//   }
-// }
 
 
 
@@ -119,6 +104,9 @@ export const setOfflineUser = async(userAuth) => {
     .delete()
     .catch(error => console.log('error deleting user from Online collection', error))
 }
+
+
+
 
 
 // Initialize Firebase

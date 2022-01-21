@@ -1,0 +1,16 @@
+.app-header {
+  display: flex;
+  width: 100%;
+
+  .header-name {
+    width: 20%;
+  }
+
+  .online-now {
+    width: 60%
+  }
+
+  .buttons {
+    width: 20%;
+  }
+}

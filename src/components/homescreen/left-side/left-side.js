@@ -38,7 +38,10 @@ const LeftSide = () => {
 
   return (
     <div className='left-side-container'>
+
+    <div className='left-side-banner'>
       <h1>Left side container</h1>
+    </div>
 
       <div className='chat-history'>
         <h1>Chats</h1>

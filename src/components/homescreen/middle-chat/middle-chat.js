@@ -9,7 +9,7 @@ import 'firebase/compat/firestore';
 //Import components//
 import ChatContainer from './chat-container/chat-container.js';
 import ChatInput from './chat-input/chat-input.js';
-
+import Header from '../header/header.js';
 
 
 
@@ -33,11 +33,21 @@ const MiddleChat = () => {
     await messageRef.add({
       text: message,
       createdAt: date,
+      userName: data.currentUser.user.displayName,
       uid,
       photoURL
     })
   }
 
+  //deletes all messages in firestore should we ever need to start fresh - just uncomment, run the function and wallah//
+  // const deleteMessages = async() => {
+  //   firestore.collection('messages').get().then(res => {
+  //     res.forEach(i => {
+  //       i.ref.delete();
+  //     })
+  //   })
+  // }
+  // deleteMessages();
 
 
   return (
@@ -45,8 +55,8 @@ const MiddleChat = () => {
 
       <div className='chat-container'>
 
-        <div className='chat-banner'>
-          <span>Main lobby</span>
+        <div className='chat-header'>
+          <Header />
         </div>
 
         <ChatContainer />
