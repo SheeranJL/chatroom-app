@@ -1,13 +1,18 @@
 .app-header {
   display: flex;
   width: 100%;
+  background-color: red;
 
   .header-name {
     width: 20%;
   }
 
-  .online-now {
-    width: 60%
+  .online-now-container {
+    width: 60%;
+
+    .online-now-users {
+      display: flex;
+    }
   }
 
   .buttons {

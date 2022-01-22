@@ -58,7 +58,6 @@ const MiddleChat = () => {
         <div className='chat-header'>
           <Header />
         </div>
-
         <ChatContainer />
       </div>
 
