@@ -9,9 +9,11 @@ import OnlineUser from '../../reuseable/online-user/online-user.js'
 
 const Header = () => {
 
+  const {data, actions} = useContext(appContext);
   const onlineUsersRef = firestore.collection('online');
   const [onlineUsers] = useCollectionData(onlineUsersRef, {idField: 'id'});
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (onlineUsers) {
@@ -21,10 +23,19 @@ const Header = () => {
     }
   }, [onlineUsers])
 
+  const handleLogout = async() => {
+    await auth.signOut();
+    actions.setCurrentUser(null);
+    setOfflineUser(data.currentUser.user.uid);
+    navigate('/login');
+  }
+
   return (
     <div className='app-header'>
 
-      <h2 className='header-name'>Chatroom lobby</h2>
+      <div className='header-name'>
+        <h2>Open chatroom</h2>
+      </div>
 
       <div className='online-now-container'>
         <span>Online now</span>
@@ -35,10 +46,11 @@ const Header = () => {
           : onlineUsers.map((user, index) => <OnlineUser key={index} onlineUser={user} />)
         }
         </div>
+
       </div>
 
       <div className='buttons'>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
 
 
