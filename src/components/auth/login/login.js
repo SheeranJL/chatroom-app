@@ -99,6 +99,7 @@ const Login = ({toggleLoginMethod}) => {
 
         <div className='form-button'>
           <button
+            style={{backgroundColor: 'rgb(66, 133, 244)'}}
             className='google-button'
             onClick={signInWithGoogle}
             >Google</button>

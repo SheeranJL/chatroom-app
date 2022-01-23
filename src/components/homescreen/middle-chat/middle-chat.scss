@@ -6,7 +6,7 @@
   align-items: center;
 
   .chat-container {
-    height: 95%;
+    height: 100%;
     width: 100%;
     justify-content: center;
     display: flex;
@@ -43,6 +43,16 @@
     width: 100%;
     .chat-message-container {
       height: 5%;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+  .middle-chat-container {
+    width: 100%;
+    .chat-message-container {
+      height: 10%;
     }
   }
 }

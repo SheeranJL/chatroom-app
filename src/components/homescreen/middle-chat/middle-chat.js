@@ -42,7 +42,7 @@ const MiddleChat = () => {
   }
 
   // deletes all messages in firestore should we ever need to start fresh - just uncomment, run the function and wallah//
-
+  //
   // const deleteMessages = async() => {
   //   firestore.collection('messages').get().then(res => {
   //     res.forEach(i => {
@@ -62,12 +62,12 @@ const MiddleChat = () => {
           <Header />
         </div>
         <ChatContainer />
-      </div>
+
 
       <div className='chat-message-container'>
         <ChatInput handleChange={handleChange} message={message} handleSubmit={handleSubmit}/>
       </div>
-
+      </div>
     </div>
   )
 }

@@ -52,7 +52,58 @@
       font-size: 20px;
       font-weight: bold;
 
+      &:hover {
+        color: red;
+        background-color: rgba(39, 45, 53, 0.5);
+      }
 
     }
   }
+}
+
+@media only screen and (max-width: 480px) {
+  .app-header {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    position: relative;
+
+    .header-name {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+        h2 {
+          margin-left: 0px;
+        }
+    }
+
+    .online-now-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      position: absolute;
+      right: 0;
+      top: 0;
+        button {
+          margin: 0;
+          height: 20px;
+          width: auto;
+          font-size: 10px;
+          color: red;
+          background-color: transparent;
+          font-weight: bold;
+        }
+    }
+
+
+  }
+
+
+
 }
