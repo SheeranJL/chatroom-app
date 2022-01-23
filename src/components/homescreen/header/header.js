@@ -38,13 +38,16 @@ const Header = () => {
       </div>
 
       <div className='online-now-container'>
-        <span>Online now</span>
+        <span style={{color: 'white', fontWeight: 'bold'}}>Online now</span>
+
         <div className='online-now-users'>
+
         {
           loading
           ? <h1>loading</h1>
           : onlineUsers.map((user, index) => <OnlineUser key={index} onlineUser={user} />)
         }
+
         </div>
 
       </div>

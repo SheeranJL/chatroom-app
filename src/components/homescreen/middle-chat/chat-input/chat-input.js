@@ -10,7 +10,7 @@ const ChatInput = ({handleChange, message, handleSubmit}) => {
       <input
        type='text'
        className='chat-field'
-       placeholder="type here..."
+       placeholder="Write something to send here..."
        onChange={handleChange}
        value={message}
        onSubmit={handleSubmit}

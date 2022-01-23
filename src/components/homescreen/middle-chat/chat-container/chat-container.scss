@@ -3,8 +3,19 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100%;
-  background-color: white;
+  background-color: rgba(40, 38, 52);
   flex-direction: column;
   display: flex;
+}
 
+.chat-container-inner::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.chat-container-inner::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+.chat-container-inner::-webkit-scrollbar-thumb {
+  background: #6649b8;
 }
