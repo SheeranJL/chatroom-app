@@ -37,9 +37,12 @@ const MiddleChat = () => {
       uid,
       photoURL
     })
+
+    setMessage('');
   }
 
-  //deletes all messages in firestore should we ever need to start fresh - just uncomment, run the function and wallah//
+  // deletes all messages in firestore should we ever need to start fresh - just uncomment, run the function and wallah//
+
   // const deleteMessages = async() => {
   //   firestore.collection('messages').get().then(res => {
   //     res.forEach(i => {

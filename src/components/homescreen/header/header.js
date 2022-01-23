@@ -38,8 +38,7 @@ const Header = () => {
       </div>
 
       <div className='online-now-container'>
-        <span style={{color: 'white', fontWeight: 'bold'}}>Online now</span>
-
+      
         <div className='online-now-users'>
 
         {

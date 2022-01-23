@@ -1,4 +1,4 @@
-.chat-message-container {
+.each-message-container {
   display: flex;
   width: 100%;
   align-items: center;
@@ -31,6 +31,9 @@
 
     .chat-photo {
       display: flex;
+      height: 100%;
+      margin-top: auto;
+
       img {
         max-height: 40px;
         max-width: 40px;
@@ -44,23 +47,11 @@
       background-color: rgb(229, 229, 234);
       color: black;
       display: flex;
-      align-items: center;
       flex-direction: column;
       justify-content: center;
       width: auto;
       border-radius: 10px;
-      align-self: center;
-      align-content: center;
 
-      .sender-name {
-        display: flex;
-        width: 100%;
-        align-items: flex-end;
-        font-size: 12px;
-        text-align: left;
-        margin-left: 5px;
-        margin-top: 5px;
-      }
 
       .message-text {
         width: auto;
@@ -68,9 +59,19 @@
         margin-right: 10px;
         margin-top: 10px;
         margin-bottom: 10px;
+
+        span {
+          color: red;
+          text-align: left;
+        }
       }
     }
   }
+}
 
-
+.sender-name {
+  color: grey;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  font-size: 15px;
 }

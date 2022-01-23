@@ -7,7 +7,7 @@ const EachMessage = ({message}) => {
   const {data:{currentUser}} = useContext(appContext);
 
   return (
-    <div className='chat-message-container'>
+    <div className='each-message-container'>
 
       <div className={message.uid === currentUser.user.uid ? 'chat-me' : 'chat-them'}>
 
@@ -15,11 +15,17 @@ const EachMessage = ({message}) => {
           <img src={message.photoURL || 'https://www.seekpng.com/png/detail/143-1435868_headshot-silhouette-person-placeholder.png'}/>
         </div>
 
-        <div className='chat-message'>
-          <div className='sender-name'>
+        <div>
+          <div className='sender-name' style={{display: message.uid === currentUser.user.uid ? 'none' : ''}}>
             <span>{message.userName}</span>
           </div>
-          <span className='message-text'>{message.text}</span>
+
+          <div className='chat-message'>
+
+            <div className='message-text'>
+              <span>{message.text}</span>
+            </div>
+          </div>
         </div>
 
       </div>
