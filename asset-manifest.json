@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/chatroom-app/static/css/main.354ccb2a.css",
-    "main.js": "/chatroom-app/static/js/main.b1755087.js",
+    "main.css": "/chatroom-app/static/css/main.70989e1d.css",
+    "main.js": "/chatroom-app/static/js/main.30a3e2b0.js",
     "static/js/787.48b8f6cf.chunk.js": "/chatroom-app/static/js/787.48b8f6cf.chunk.js",
     "static/media/send-4008.svg": "/chatroom-app/static/media/send-4008.2161fe042e4f23c0be777339820fe518.svg",
     "index.html": "/chatroom-app/index.html",
-    "main.354ccb2a.css.map": "/chatroom-app/static/css/main.354ccb2a.css.map",
-    "main.b1755087.js.map": "/chatroom-app/static/js/main.b1755087.js.map",
+    "main.70989e1d.css.map": "/chatroom-app/static/css/main.70989e1d.css.map",
+    "main.30a3e2b0.js.map": "/chatroom-app/static/js/main.30a3e2b0.js.map",
     "787.48b8f6cf.chunk.js.map": "/chatroom-app/static/js/787.48b8f6cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.354ccb2a.css",
-    "static/js/main.b1755087.js"
+    "static/css/main.70989e1d.css",
+    "static/js/main.30a3e2b0.js"
   ]
 }
