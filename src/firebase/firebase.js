@@ -64,7 +64,8 @@ export const checkAuthenticatedUser = async(userAuth) => {
 
 
 export const onAuthStateChangeFindUser = async(userAuth) => {
-
+  if (!userAuth) return;
+  
   let userToReturn;
 
   const userRefSnapshot = await firestore.doc(`users/${userAuth.uid}`)
@@ -78,6 +79,7 @@ export const onAuthStateChangeFindUser = async(userAuth) => {
 
 //This function will place the user within the firestore 'online' document.
 export const setOnlineUser = async(userAuth) => {
+  if (!userAuth) return;
 
   const documentRef = await firestore.doc(`online/${userAuth.user.uid}`);
   const snapshot = await documentRef.get();

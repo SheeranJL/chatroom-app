@@ -10,6 +10,7 @@ import CustomButton from '../../reuseable/custom-button/custom-button.js';
 const Login = ({toggleLoginMethod}) => {
 
   const {data, actions} = useContext(appContext)
+  const [loginError, setLoginError] = useState(false);
 
   const [loginValues, setLoginValues] = useState({
     email: '',
@@ -44,29 +45,18 @@ const Login = ({toggleLoginMethod}) => {
 
 
   //Handle submission of login form
-  const handleSubmit = () => {
-    auth.signInWithEmailAndPassword(email, password) //Google will search for a email/pass combo.
+  const handleSubmit = async() => {
 
-      // .then((auth) => {                              //If successful, we will have an object returned to us containing the user details.
-      //   console.log('login successful')
-      //   console.log(auth)
-      //
-      //   const {user:{displayName, email, photoURL, uid}} = auth;
-      //
-      //   console.log('checking user object:', displayName, email, photoURL, uid)
-      //   actions.setCurrentUser({     //Set current user to our context state.
-      //     user: {
-      //       displayName,
-      //       email,
-      //       photoURL,
-      //       uid
-      //     }
-      //   })
-      // })
-      // .catch(error => {              //If unsuccessful, we will be given an error stating that the email/pass combo doesn't exist, or otherwise.
-      //   console.log(error)
-      //   setLoginErrors(error.code)
-      // })
+    console.log('hjduhed')
+    try {
+      await auth.signInWithEmailAndPassword(email, password) //Google will search for a email/pass combo.
+      setLoginError(false);
+    } catch(error) {
+      await setLoginError(true);
+      console.log('error signing in', error)
+
+    }
+
   }
 
 
@@ -89,7 +79,11 @@ const Login = ({toggleLoginMethod}) => {
 
       </form>
 
-
+      {
+        loginError
+        ? <span style={{color: 'red', textAlign: 'center', marginTop: 20, fontSize: 15}}>Incorrect username or password</span>
+        : null
+      }
 
       <div className='login-buttons'>
 

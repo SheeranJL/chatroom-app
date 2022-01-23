@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 const Register = ({toggleLoginMethod}) => {
 
   const {actions, data} = useContext(appContext) //Importing context
+  const [regErrors, setRegErrors] = useState(false);
   const nativate = useNavigate();
 
   //Form registration values (local state)//
@@ -34,6 +35,12 @@ const Register = ({toggleLoginMethod}) => {
 
 
   const handleSubmit = async() => {
+
+    if (!displayName || !email || !password || confirmPassword) {
+      setRegErrors(true);
+      return;
+    }
+
     const {user} = await auth.createUserWithEmailAndPassword(email, password)      //Create a new account on google auth
 
     const newUserInfo = {
@@ -44,6 +51,7 @@ const Register = ({toggleLoginMethod}) => {
     const account = await createUserProfileDocument(user, newUserInfo);
     console.log('console log the new account obj:', account.data());
     actions.setCurrentUser(account.data());
+    setRegErrors(false);
 
   }
 
@@ -55,7 +63,7 @@ const Register = ({toggleLoginMethod}) => {
       <form>
         <div className='input-section'>
           <label htmlFor='displayName'>Display name</label>
-          <input name='displayName' type='displayName' onChange={handleChange} value={displayName}/>
+          <input name='displayName' type='text' onChange={handleChange} value={displayName}/>
         </div>
 
         <div className='input-section'>
@@ -74,8 +82,15 @@ const Register = ({toggleLoginMethod}) => {
         </div>
       </form>
 
+      {
+        regErrors
+        ? <span style={{color: 'red', marginTop: 10, textAlign: 'center', fontSize: 15}}>Please correctly enter all fields</span>
+        : null
+      }
+
+
       <div className='form-button-register'>
-      <button onClick={handleSubmit}>Register</button>
+      <button style={{border: 'none', borderRadius: '3px'}} onClick={handleSubmit}>Register</button>
       </div>
 
       <h4 onClick={() => toggleLoginMethod(true)}>

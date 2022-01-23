@@ -25,9 +25,10 @@
 
   .submit-chat-container {
     display: flex;
-    width: 15%;
+    width: 80px;
     height: 100%;
     background-color: rgba(31, 33, 66);
+    margin-left: auto;
   }
 
   button {
@@ -59,3 +60,12 @@
     }
   }
 }
+
+// @media only screen and (max-width: 480px) {
+//   .submit-chat-container {
+//     display: flex;
+//     width: 15%;
+//     height: 100%;
+//     background-color: rgba(31, 33, 66);
+//   }
+// }

@@ -57,7 +57,7 @@ const App = () => {
 
   return (
     <div className='app-container'>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route exact path='/login' element={<AuthPage />} />
           <Route path='/home' element={<PrivateRoute isAuthenticated={data.currentUser}> <HomeScreen /> </PrivateRoute>} />
